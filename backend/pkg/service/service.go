@@ -17,19 +17,10 @@ func New() *Service {
 }
 
 func (s *Service) CreateGame(db *gorm.DB, request dto.Game) (*dto.GameID, error) {
-	game := &entity.Game{
-		Status:   entity.GameStatusActive,
-		HomeName: request.HomeName,
-		AwayName: request.AwayName,
-	}
-
-	score := &entity.Score{
-		HomeScore: request.HomeScore,
-		AwayScore: request.AwayScore,
-	}
+	game := request.GetGameEntity()
+	score := request.GetScoreEntity()
 
 	if err := db.Transaction(func(db *gorm.DB) error {
-
 		if result := repo.CreateGame(db, game); result.Error != nil {
 			return fmt.Errorf("failed to save game entity: %w", result.Error)
 		}
