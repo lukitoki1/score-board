@@ -39,7 +39,7 @@ func (s *Service) CreateGame(db *gorm.DB, request dto.Game) (*dto.GameID, error)
 	return &dto.GameID{ID: game.ID}, nil
 }
 
-func (s *Service) UpdateGame(db *gorm.DB, gameID uuid.UUID, request dto.Game) (*dto.GameID, error) {
+func (s *Service) UpdateGame(db *gorm.DB, gameID uuid.UUID, request dto.Game) error {
 	game := request.GetGameEntity()
 	score := request.GetScoreEntity()
 
@@ -59,10 +59,10 @@ func (s *Service) UpdateGame(db *gorm.DB, gameID uuid.UUID, request dto.Game) (*
 
 		return nil
 	}); err != nil {
-		return nil, fmt.Errorf("failed to update game: %w", err)
+		return fmt.Errorf("failed to update game: %w", err)
 	}
 
-	return &dto.GameID{ID: game.ID}, nil
+	return nil
 }
 
 func (s *Service) FinishGame(db *gorm.DB, gameID uuid.UUID) error {

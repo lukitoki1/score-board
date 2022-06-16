@@ -18,13 +18,12 @@ func (s *ScoreBoardServer) updateGame(c *gin.Context) {
 	}
 
 	var request dto.Game
-	if err := util.BindAndValidate(c, &request); err != nil {
+	if err = util.BindAndValidate(c, &request); err != nil {
 		util.AbortWithValidationError(c, err)
 		return
 	}
 
-	response, err := s.service.UpdateGame(database.Get(c), gameID, request)
-	if err != nil {
+	if err = s.service.UpdateGame(database.Get(c), gameID, request); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			util.AbortWithNotFoundError(c, err)
 			return
@@ -34,5 +33,5 @@ func (s *ScoreBoardServer) updateGame(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, response)
+	c.Status(http.StatusOK)
 }
