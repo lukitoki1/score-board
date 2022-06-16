@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
-	"github.com/lukitoki1/score-board/pkg/utils"
+	"github.com/lukitoki1/score-board/pkg/util"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -33,5 +33,5 @@ func Get(ctx context.Context) *gorm.DB {
 }
 
 func getDataSourceName() (string, error) {
-	return utils.MustGetEnv("DATASOURCE_NAME")
+	return util.MustGetEnv("DATASOURCE_NAME")
 }
