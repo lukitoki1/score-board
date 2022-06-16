@@ -21,6 +21,7 @@ func (s *Service) CreateGame(db *gorm.DB, request dto.Game) (*dto.GameID, error)
 	score := request.GetScoreEntity()
 
 	if err := db.Transaction(func(db *gorm.DB) error {
+		game.Status = entity.GameStatusActive
 		if result := repo.CreateGame(db, game); result.Error != nil {
 			return fmt.Errorf("failed to save game entity: %w", result.Error)
 		}
