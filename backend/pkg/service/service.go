@@ -52,7 +52,7 @@ func (s *Service) UpdateGame(db *gorm.DB, gameID uuid.UUID, request dto.Game) er
 			return gorm.ErrRecordNotFound
 		}
 
-		score.GameID = game.ID
+		score.GameID = gameID
 		if result = repo.CreateScore(db, score); result.Error != nil {
 			return fmt.Errorf("failed to save score entity: %w", result.Error)
 		}
