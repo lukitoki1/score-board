@@ -7,7 +7,7 @@ import (
 )
 
 func AbortWithNotFoundError(c *gin.Context, err error) {
-	abortWithStatus(c, http.StatusNotFound, "could not find entity", err)
+	abortWithStatus(c, http.StatusNotFound, "failed to find entity", err)
 }
 
 func AbortWithInternalServerError(c *gin.Context, err error) {
@@ -15,7 +15,7 @@ func AbortWithInternalServerError(c *gin.Context, err error) {
 }
 
 func AbortWithValidationError(c *gin.Context, err error) {
-	abortWithStatus(c, http.StatusBadRequest, "failed to bind or validate request", err)
+	abortWithStatus(c, http.StatusBadRequest, "failed to validate request", err)
 }
 
 func abortWithStatus(c *gin.Context, status int, message string, err error) {

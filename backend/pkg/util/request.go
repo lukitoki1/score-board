@@ -8,11 +8,11 @@ import (
 
 func BindAndValidate(c *gin.Context, request any) error {
 	if err := c.ShouldBindJSON(&request); err != nil {
-		return fmt.Errorf("could not bind JSON: %w", err)
+		return fmt.Errorf("failed to bind JSON: %w", err)
 	}
 
 	if err := validator.Validate(request); err != nil {
-		return fmt.Errorf("could not validate request: %w", err)
+		return fmt.Errorf("failed to validate request: %w", err)
 	}
 
 	return nil
