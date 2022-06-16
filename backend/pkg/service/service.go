@@ -71,3 +71,23 @@ func (s *Service) FinishGame(db *gorm.DB, gameID uuid.UUID) error {
 	}
 	return nil
 }
+
+func (s *Service) GetGames(db *gorm.DB) ([]dto.Game, error) {
+	var gameScores []entity.GameScore
+	if result := repo.FindGameScores(db, &gameScores); result.Error != nil {
+		return nil, fmt.Errorf("failed to find games: %w", result.Error)
+	}
+
+	response := make([]dto.Game, len(gameScores))
+	for i, gameScore := range gameScores {
+		response[i] = dto.Game{
+			ID:        gameScore.ID,
+			HomeName:  gameScore.HomeName,
+			AwayName:  gameScore.AwayName,
+			HomeScore: gameScore.HomeScore,
+			AwayScore: gameScore.AwayScore,
+		}
+	}
+
+	return response, nil
+}
