@@ -15,8 +15,7 @@ func (s *ScoreBoardServer) createGame(c *gin.Context) {
 		return
 	}
 
-	da := database.Get(c)
-	response, err := s.service.CreateGame(da, request)
+	response, err := s.service.CreateGame(database.Get(c), request)
 	if err != nil {
 		util.AbortWithInternalServerError(c, err)
 		return
