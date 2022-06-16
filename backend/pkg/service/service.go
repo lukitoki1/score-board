@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/lukitoki1/score-board/pkg/dto"
 	"github.com/lukitoki1/score-board/pkg/entity"
 	"github.com/lukitoki1/score-board/pkg/repo"
@@ -44,4 +45,11 @@ func (s *Service) CreateGame(db *gorm.DB, request dto.Game) (*dto.GameID, error)
 	}
 
 	return &dto.GameID{ID: game.ID}, nil
+}
+
+func (s *Service) FinishGame(db *gorm.DB, gameID uuid.UUID) error {
+	if result := repo.UpdateGameStatus(db, gameID, entity.GameStatusFinished); result.Error != nil {
+		return fmt.Errorf("failed to finish game %v: %w", gameID, result.Error)
+	}
+	return nil
 }
