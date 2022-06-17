@@ -66,9 +66,14 @@ func (s *Service) UpdateGame(db *gorm.DB, gameID uuid.UUID, request dto.Game) er
 }
 
 func (s *Service) FinishGame(db *gorm.DB, gameID uuid.UUID) error {
-	if result := repo.UpdateGameStatus(db, gameID, entity.GameStatusFinished); result.Error != nil {
+	result := repo.UpdateGameStatus(db, gameID, entity.GameStatusFinished)
+	if result.Error != nil {
 		return fmt.Errorf("failed to finish game %v: %w", gameID, result.Error)
 	}
+	if result.RowsAffected == 0 {
+		return gorm.ErrRecordNotFound
+	}
+
 	return nil
 }
 

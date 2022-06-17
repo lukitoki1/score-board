@@ -4,5 +4,5 @@ build:
 run:
 	go run cmd/score-board/main.go
 
-test:
-	go test ./...
+test_local:
+	go test ./... -v -run "^TestLocal"
