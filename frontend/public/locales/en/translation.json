@@ -11,6 +11,21 @@
     "homeName": "Home team",
     "awayName": "Away team"
   },
+  "gamesTable": {
+    "error": "Error occurred while loading games data",
+    "empty": "No games",
+    "head": {
+      "homeName": "Home team",
+      "awayName": "Away team",
+      "homeScore": "Home score",
+      "awayScore": "Away score",
+      "actions": "Actions"
+    },
+    "data": {
+      "finish": "Finish",
+      "update": "Update score"
+    }
+  },
   "toast": {
     "error": {
       "notFound": {
