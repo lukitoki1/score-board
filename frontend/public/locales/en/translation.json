@@ -1,0 +1,23 @@
+{
+  "common": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navBar": {
+    "title": "Football World Cup Score Board"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Not found",
+      "description": "The requested resource could not be found"
+    },
+    "badRequest": {
+      "title": "Bad request",
+      "description": "The request sent via API contained invalid data"
+    },
+    "internal": {
+      "title": "Internal server error",
+      "description": "Internal server error occurred"
+    }
+  }
+}
