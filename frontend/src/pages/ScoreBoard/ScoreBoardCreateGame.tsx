@@ -27,6 +27,7 @@ export const ScoreBoardCreateGame: FC = () => {
       awayName: values[CreateGameFormFields.AWAY_NAME]
     })
     actions.setSubmitting(false)
+    actions.resetForm();
   }
 
   return (
