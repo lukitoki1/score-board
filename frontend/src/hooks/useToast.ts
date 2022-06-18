@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 export interface TriggerToastProps {
   title: string;
-  description?: ReactNode;
+  description?: ReactNode | string;
   status: AlertStatus;
   isClosable?: boolean;
   isPersistent?: boolean;

@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavBar } from "./components/NavBar/NavBar";
-import { ScoreBoardPage } from "./pages/ScoreBoardPage";
+import { ScoreBoard } from "./pages/ScoreBoard/ScoreBoard";
+import { Container } from "@chakra-ui/react";
 
 function App() {
   return (
     <>
       <NavBar/>
-      <ScoreBoardPage/>
+      <Container maxW="container.xl" marginTop="36" marginBottom="24">
+        <ScoreBoard/>
+      </Container>
     </>
   );
 }

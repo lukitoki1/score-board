@@ -7,7 +7,7 @@ import {
 } from "../values/status";
 import { useAppToast } from "../hooks/useToast";
 import { TIMEOUT } from "../values/api";
-import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 let axiosInstance: AxiosInstance;
 
@@ -26,28 +26,31 @@ export const useAxios = () => {
       },
       (error: AxiosError) => {
         const { triggerToast } = useAppToast(true)
-        const { t } = useTranslation()
+
+        const t = (key: string): string => {
+          return i18next.t(key)
+        }
 
         switch (error.response?.status) {
         case HTTP_NOT_FOUND_STATUS:
           triggerToast({
-            title: t("errors.notFound.title"),
-            description: t("errors.notFound.description"),
+            title: t("toast.error.notFound.title"),
+            description: t("toast.error.notFound.description"),
             status: "error"
           })
           break
         case HTTP_BAD_REQUEST_STATUS:
           triggerToast({
-            title: t("errors.badRequest.title"),
-            description: t("errors.badRequest.description"),
+            title: t("toast.error.badRequest.title"),
+            description: t("toast.error.badRequest.description"),
             status: "error"
           })
           break
         case HTTP_INTERNAL_SERVER_ERROR_STATUS:
         default:
           triggerToast({
-            title: t("errors.internal.title"),
-            description: t("errors.internal.description"),
+            title: t("toast.error.internal.title"),
+            description: t("toast.error.internal.description"),
             status: "error"
           })
           break

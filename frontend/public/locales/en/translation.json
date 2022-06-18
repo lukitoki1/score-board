@@ -1,23 +1,40 @@
 {
   "common": {
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "add": "Add"
   },
   "navBar": {
     "title": "Football World Cup Score Board"
   },
-  "errors": {
-    "notFound": {
-      "title": "Not found",
-      "description": "The requested resource could not be found"
+  "createGameForm": {
+    "homeName": "Home team",
+    "awayName": "Away team"
+  },
+  "toast": {
+    "error": {
+      "notFound": {
+        "title": "Not found",
+        "description": "The requested resource could not be found"
+      },
+      "badRequest": {
+        "title": "Bad request",
+        "description": "The request sent via API contained invalid data"
+      },
+      "internal": {
+        "title": "Internal server error",
+        "description": "Internal server error occurred"
+      }
     },
-    "badRequest": {
-      "title": "Bad request",
-      "description": "The request sent via API contained invalid data"
-    },
-    "internal": {
-      "title": "Internal server error",
-      "description": "Internal server error occurred"
+    "success": {
+      "createGame": {
+        "title": "Game created",
+        "description": "Game created successfully"
+      }
     }
+  },
+  "validation": {
+    "required": "Field is required",
+    "max": "Field length cannot exceed {{maxCount}} characters"
   }
 }
