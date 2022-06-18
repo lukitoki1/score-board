@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lukitoki1/score-board/pkg/database"
+	"github.com/lukitoki1/score-board/pkg/middleware"
 	"github.com/lukitoki1/score-board/pkg/service"
 	"github.com/lukitoki1/score-board/pkg/validator"
 )
@@ -21,6 +22,7 @@ func New() *ScoreBoardServer {
 
 func (s *ScoreBoardServer) Run() error {
 	s.engine = gin.Default()
+	s.engine.Use(middleware.CorsHandler([]string{"*"}, []string{"content-type"}))
 	s.addRoutes()
 
 	validator.Init()

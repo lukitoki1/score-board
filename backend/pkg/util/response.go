@@ -18,6 +18,10 @@ func AbortWithValidationError(c *gin.Context, err error) {
 	abortWithStatus(c, http.StatusBadRequest, "failed to validate request", err)
 }
 
+func AbortWithForbiddenError(c *gin.Context, err error) {
+	abortWithStatus(c, http.StatusForbidden, "forbidden", err)
+}
+
 func abortWithStatus(c *gin.Context, status int, message string, err error) {
 	_ = c.AbortWithError(status, fmt.Errorf("%s: %w", message, err))
 }
