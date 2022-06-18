@@ -3,16 +3,19 @@ import { useGetGames } from "../../api/useGetGames";
 import { Center, Spinner, Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { ScoreBoardGamesItem } from "./ScoreBoardGamesItem";
+import { useFinishGame } from "../../api/useFinishGame";
+import { GetGameDTO } from "../../dto/game";
 
 export const ScoreBoardGames: FC = () => {
   const { data, isLoading, isError } = useGetGames()
+  const finishMutation = useFinishGame()
   const { t } = useTranslation()
 
-  const onFinish = () => {
-    console.log("finish")
+  const onFinish = async (game: GetGameDTO) => {
+    await finishMutation.mutateAsync(game.id)
   }
 
-  const onUpdate = () => {
+  const onUpdate = (game: GetGameDTO) => {
     console.log("update")
   }
 
@@ -45,7 +48,12 @@ export const ScoreBoardGames: FC = () => {
       </Thead>
       <Tbody>
         {data.map((game) => (
-          <ScoreBoardGamesItem key={game.id} game={game} onFinish={onFinish} onUpdate={onUpdate}/>
+          <ScoreBoardGamesItem
+            key={game.id}
+            game={game}
+            onFinish={() => onFinish(game)}
+            onUpdate={() => onUpdate(game)}
+          />
         ))}
       </Tbody>
     </Table>

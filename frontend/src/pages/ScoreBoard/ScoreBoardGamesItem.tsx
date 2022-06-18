@@ -6,8 +6,8 @@ import { FC, ReactNode } from "react";
 
 export interface ScoreBoardGamesItemProps {
   game: GetGameDTO;
-  onFinish: () => any;
-  onUpdate: () => any;
+  onFinish: () => void;
+  onUpdate: () => void;
 }
 
 export const ScoreBoardGamesItem: FC<ScoreBoardGamesItemProps> = ({ game, onFinish, onUpdate }) => {

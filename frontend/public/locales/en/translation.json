@@ -45,6 +45,10 @@
       "createGame": {
         "title": "Game created",
         "description": "Game created successfully"
+      },
+      "finishGame": {
+        "title": "Game finished",
+        "description": "Game finished successfully - it will no longer ve visible on the board"
       }
     }
   },
