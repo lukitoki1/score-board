@@ -6,13 +6,14 @@ import App from './App';
 import { queryClient } from "./api/queryClient";
 import { Loading } from "./components/Loading/Loading";
 import './i18n';
+import { theme } from "./styles/theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Suspense fallback={<Loading/>}>
         <QueryClientProvider client={queryClient}>
           <App/>

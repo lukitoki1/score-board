@@ -3,12 +3,12 @@ export interface CreateGameDTO {
   awayName: string;
 }
 
-export interface UpdateGameDTO {
+export interface UpdateGameDTO extends CreateGameDTO {
   homeScore: number;
   awayScore: number;
 }
 
-export interface GetGameDTO {
+export interface GameDTO {
   id: string;
   homeName: string;
   awayName: string;

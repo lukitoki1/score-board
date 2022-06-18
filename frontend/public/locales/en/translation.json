@@ -2,7 +2,9 @@
   "common": {
     "yes": "Yes",
     "no": "No",
-    "add": "Add"
+    "add": "Add",
+    "update": "Update",
+    "cancel": "Cancel"
   },
   "navBar": {
     "title": "Football World Cup Score Board"
@@ -10,6 +12,14 @@
   "createGameForm": {
     "homeName": "Home team",
     "awayName": "Away team"
+  },
+  "updateGameForm": {
+    "homeScore": "Home score",
+    "awayScore": "Away score"
+  },
+  "updateGameModal": {
+    "heading": "Update game score",
+    "text": "Updating game score will result in updating its position on score board"
   },
   "gamesTable": {
     "error": "Error occurred while loading games data",
@@ -49,11 +59,17 @@
       "finishGame": {
         "title": "Game finished",
         "description": "Game finished successfully - it will no longer ve visible on the board"
+      },
+      "updateGame": {
+        "title": "Game score updated",
+        "description": "Game score updated - its position will be updated on the board"
       }
     }
   },
   "validation": {
     "required": "Field is required",
-    "max": "Field length cannot exceed {{maxCount}} characters"
+    "minValue": "Cannot be smaller than {{minValue}}",
+    "maxValue": "Cannot be greater than {{maxValue}}",
+    "maxLength": "Field length cannot exceed {{maxCount}} characters"
   }
 }

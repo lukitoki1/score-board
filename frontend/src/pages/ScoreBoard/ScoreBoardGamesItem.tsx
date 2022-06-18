@@ -1,11 +1,11 @@
-import { GetGameDTO } from "../../dto/game";
+import { GameDTO } from "../../dto/game";
 import { Button, HStack, Td, Tr } from "@chakra-ui/react";
 import { BiArrowToRight, BiTable } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { FC, ReactNode } from "react";
 
 export interface ScoreBoardGamesItemProps {
-  game: GetGameDTO;
+  game: GameDTO;
   onFinish: () => void;
   onUpdate: () => void;
 }

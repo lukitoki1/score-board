@@ -1,22 +1,29 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useGetGames } from "../../api/useGetGames";
 import { Center, Spinner, Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { ScoreBoardGamesItem } from "./ScoreBoardGamesItem";
 import { useFinishGame } from "../../api/useFinishGame";
-import { GetGameDTO } from "../../dto/game";
+import { GameDTO } from "../../dto/game";
+import { ScoreBoardUpdateGame } from "./ScoreBoardUpdateGame";
 
 export const ScoreBoardGames: FC = () => {
+  const [gameToUpdate, setGameToUpdate] = useState<GameDTO | undefined>();
+
   const { data, isLoading, isError } = useGetGames()
-  const finishMutation = useFinishGame()
+  const mutation = useFinishGame()
   const { t } = useTranslation()
 
-  const onFinish = async (game: GetGameDTO) => {
-    await finishMutation.mutateAsync(game.id)
+  const onFinish = async (game: GameDTO) => {
+    await mutation.mutateAsync(game.id)
   }
 
-  const onUpdate = (game: GetGameDTO) => {
-    console.log("update")
+  const onOpenUpdateModal = (game: GameDTO) => {
+    setGameToUpdate(game)
+  }
+
+  const onCloseUpdateModal = () => {
+    setGameToUpdate(undefined)
   }
 
   if (isLoading) {
@@ -36,26 +43,29 @@ export const ScoreBoardGames: FC = () => {
   }
 
   return (
-    <Table>
-      <Thead>
-        <Tr>
-          <Th>{t('gamesTable.head.homeName')}</Th>
-          <Th>{t('gamesTable.head.awayName')}</Th>
-          <Th isNumeric>{t('gamesTable.head.homeScore')}</Th>
-          <Th isNumeric>{t('gamesTable.head.awayScore')}</Th>
-          <Th isNumeric>{t('gamesTable.head.actions')}</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {data.map((game) => (
-          <ScoreBoardGamesItem
-            key={game.id}
-            game={game}
-            onFinish={() => onFinish(game)}
-            onUpdate={() => onUpdate(game)}
-          />
-        ))}
-      </Tbody>
-    </Table>
+    <>
+      <ScoreBoardUpdateGame game={gameToUpdate} onClose={onCloseUpdateModal}/>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>{t('gamesTable.head.homeName')}</Th>
+            <Th>{t('gamesTable.head.awayName')}</Th>
+            <Th isNumeric>{t('gamesTable.head.homeScore')}</Th>
+            <Th isNumeric>{t('gamesTable.head.awayScore')}</Th>
+            <Th isNumeric>{t('gamesTable.head.actions')}</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data.map((game) => (
+            <ScoreBoardGamesItem
+              key={game.id}
+              game={game}
+              onFinish={() => onFinish(game)}
+              onUpdate={() => onOpenUpdateModal(game)}
+            />
+          ))}
+        </Tbody>
+      </Table>
+    </>
   );
 }

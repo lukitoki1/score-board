@@ -5,9 +5,9 @@ export const createGameFormValidationSchema = yup.object().shape({
   [CreateGameFormFields.HOME_NAME]: yup
     .string()
     .required('validation.required')
-    .max(NAME_MAX_LENGTH, 'validation.max'),
+    .max(NAME_MAX_LENGTH, 'validation.maxLength'),
   [CreateGameFormFields.AWAY_NAME]: yup
     .string()
     .required('validation.required')
-    .max(NAME_MAX_LENGTH, 'validation.max'),
+    .max(NAME_MAX_LENGTH, 'validation.maxLength'),
 });
