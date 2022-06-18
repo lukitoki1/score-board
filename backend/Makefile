@@ -1,3 +1,6 @@
+install:
+	go mod download
+
 build:
 	go build -o bin/score-board cmd/score-board/main.go
 
